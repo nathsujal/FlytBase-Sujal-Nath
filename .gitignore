@@ -45,6 +45,7 @@ env/
 .coverage
 htmlcov/
 .tox/
+test*.py
 
 # Data & Cache Directories
 # data/
