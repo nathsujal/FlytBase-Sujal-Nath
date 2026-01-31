@@ -1,0 +1,51 @@
+==================================================
+SECURITY ANALYSIS REPORT
+==================================================
+
+Object ID: 1 (car)
+🚗 VEHICLE LIFECYCLE:
+  - Events     :
+    [2026-01-01T09:30:00.270000] Vehicle entered property
+    [2026-01-01T09:30:01.450000] Vehicle parked
+  - Summary    : The vehicle entered at 0.27 seconds, surrounded by street lights and parked cars. It was parked near an intersection for some time without any specific loading/unloading activity. There are no clear signs of loading or unloading during the parking period. The exact departure time is not explicitly identified but likely occurred after 1.45 seconds, with the vehicle remaining near a building.
+
+🚨 OFF-HOURS ACTIVITY DETECTED: Suspicious activity: Car detected loitering during off-hours
+  - Reasoning  : The car's off-hours presence at an intersection surrounded by buildings and vehicles is suspicious. This could indicate unauthorized activities such as surveillance or reconnaissance.
+
+Object ID: 2 (car)
+🚗 VEHICLE LIFECYCLE:
+  - Events     :
+    [2026-01-01T09:30:00.330] Vehicle entered property
+    [2026-01-01T09:30:10.000] Vehicle parked
+  - Summary    : The vehicle entered the surveillance zone at an intersection, parked near other vehicles for a period of time (10 seconds), and exited via the same intersection. There were no suspicious patterns or activities noted during this event. The data does not provide enough information about loading/unloading activities.
+
+Object ID: 3 (car)
+🚗 VEHICLE LIFECYCLE:
+  - Events     :
+    [2026-01-01T09:30:00.130000] Vehicle entered property
+    [2026-01-01T09:30:00.270000] Vehicle parked
+    [2026-01-01T09:30:00.530000] Vehicle exited property
+  - Summary    : The vehicle entered the surveillance zone at 2026-01-01T09:30:00.130000 and parked near an intersection area until 2026-01-01T09:30:00.530000, where it remained stationary. The last known position of the vehicle was at a location near buildings and traffic controls (2026-01-01T09:30:00.530000), suggesting that it left the surveillance zone after its parking event. There are no indications of loading/unloading activities or suspicious behavior such as bypassing security checkpoints or circling around the area before leaving.
+
+Object ID: 4 (car)
+🚗 VEHICLE LIFECYCLE:
+  - Events     :
+    [timeRangeStart:0.23, timeRangeEnd:1.50] Vehicle entered property
+    [timeRangeStart:1.50, timeRangeEnd:2.50] Vehicle parked
+    [timeRangeStart:2.50] Vehicle exited property
+  - Summary    : The vehicle entered the surveillance zone at 0.23 seconds and was initially surrounded by other vehicles, then parked near an intersection for approximately 1 second before moving again. No clear indication of loading/unloading activity.
+
+Object ID: 5 (car)
+🚗 VEHICLE LIFECYCLE:
+  - Events     :
+    [2026-01-01T09:30:02.870] Vehicle entered property
+    [2026-01-01T09:30:03.500] Vehicle parked
+    [2026-01-01T09:30:04.630] Vehicle exited property
+  - Summary    : The vehicle entered at the intersection, parked near a city street for approximately 0.5 seconds before exiting from that area. There were no signs of loading or unloading activities during its stay. The vehicle did not exhibit any suspicious patterns such as circling or bypassing security checkpoints based on the provided data.
+
+Object ID: 53 (person)
+🚨 LOITERING DETECTED: Person ID: 53 exhibiting suspicious loitering behavior in urban environment.
+  - Reasoning  : Suspicious Loitering
+
+==================================================
+End of Report
