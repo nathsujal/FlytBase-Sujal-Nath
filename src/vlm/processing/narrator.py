@@ -35,10 +35,8 @@ def describe_object_contextually(
 
     kg_extractor = get_kg_extractor()
     
-    # Sample evenly from available frames (max 10)
-    num_samples = min(10, len(available_frame_ids))
-    indices = np.linspace(0, len(available_frame_ids) - 1, num=num_samples, dtype=int)
-    sampled_frame_ids = [available_frame_ids[i] for i in np.unique(indices)]
+    # Sample evenly from available frames (every 60 frames)
+    sampled_frame_ids = available_frame_ids[::60]
 
     logger.debug(f"Generating contextual captions for object {obj.object_id} | {', '.join(map(str, sampled_frame_ids))} frames")
     for frame_id in sampled_frame_ids:

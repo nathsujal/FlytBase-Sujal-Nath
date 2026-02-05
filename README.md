@@ -2,56 +2,98 @@
 
 FlytBase is a multi-modal security orchestration platform that transforms aerial drone telemetry into structured, behavioral intelligence. By combining computer vision with relational and graph knowledge bases, FlytBase provides a conversational interface for advanced security investigations.
 
-## 🏗 System Architecture
+---
 
-The project is built on a modular pipeline that converts visual pixels into high-level security assessments.
+## 🏛 System Design & Flow
 
-### 1. Perception & Tracking
-Real-time object detection and persistent identity tracking using YOLO and ByteTracker.
-[View Detailed Docs →](docs/perception.md)
+FlytBase converts raw video pixels into semantic knowledge through a multi-stage pipeline.
 
-### 2. Multi-Database Data Layer
-Synchronized storage between PostgreSQL (structured metrics) and Neo4j (behavioral knowledge).
-[View Detailed Docs →](docs/data_layer.md)
+```mermaid
+graph TD
+    A[Drone Video Loader] --> B[YOLO Detector]
+    B --> C[ByteTracker]
+    C --> D{Data Sync}
+    D --> E[PostgreSQL Relational Storage]
+    D --> F[Neo4j Behavioral Graph]
+    E --> G[VLM Enrichment]
+    F --> G
+    G --> H[Security Intelligence Layer]
+    H --> I[LangGraph Investigation Agent]
+```
 
-### 3. VLM Intelligence
-Semantic analysis of scenes and objects using BLIP, CLIP, and specialized LLM profiling.
-[View Detailed Docs →](docs/vlm.md)
+### Core Architecture Highlights
+- **Dual-Database Layer**: Combines the precision of SQL (Time-series) with the depth of Graph (Behavioral Context).
+- **VLM Refinement**: Uses CLIP/BLIP to extract semantic attributes like color, gender, and age, making the data "human-searchable."
+- **Agent Orchestration**: A memory-enabled LangGraph agent that pivots across databases to answer complex security questions.
 
-### 4. Security Pattern Detection
-Automated identification of loitering, off-hours activity, and behavioral anomalies.
-[View Detailed Docs →](docs/security.md)
-
-### 5. Intelligent Orchestration
-The conversational security agent that reasons across your entire data stack using LangGraph.
-[View Detailed Docs →](docs/agent.md)
+[Read the Detailed Design & Architecture Report →](docs/architecture.md)
 
 ---
 
-## 🚀 Quick Start
+## 🤖 AI Tools Integrated
 
-### 1. Run the Full Perception Pipeline
-Processes a video source and populates the databases.
+The integration of these tools fundamentally enhanced the system's accuracy and developer efficiency:
+- **YOLOv8**: Real-time object classification and localization.
+- **CLIP**: Visual embedding for similarity search and visual novelty detection.
+- **BLIP**: Natural language captioning of surveillance scenes.
+- **Ollama (Qwen2.5)**: Local LLM for on-edge reasoning and threat assessment.
+- **LangGraph**: Orchestrates the logical flow between multiple tools and databases.
+
+---
+
+## 🚀 Setup & Installation
+
+### 1. Prerequisites
+- **Python 3.10+** (Recommended: 3.12)
+- **PostgreSQL 15+** with `pgvector` extension.
+- **Neo4j 5+** (Running locally or via Docker).
+- **Ollama** installed and running (`qwen2.5:3b` model pulled).
+
+### 2. Installation
 ```bash
-python main.py --source path/to/video.mp4
+# Clone the repository
+git clone <repo-url>
+cd FlytBase
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-### 2. Start the Interactive Analyst
-Open a chat session with the Multi-DB Security Agent.
+### 3. Running the System
+
+#### Full Simulation Pipeline
+Process a video source and populate the intelligence layer:
+```bash
+python main.py --source data/demo/video.mp4
+```
+
+#### Interactive Analyst (CLI)
+Investigate the processed data through a conversational interface:
 ```bash
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 python src/agent/agent.py
 ```
 
-## 🛠 Prerequisites
-- **PostgreSQL 15+**: For structured telemetry.
-- **Neo4j 5+**: For behavioral graph storage.
-- **Ollama**: For running Qwen2.5 (Perception logic and Agent).
-- **Python 3.10+**
+---
 
-## 📂 Project Summary
-- `src/perciever`: Computer Vision (Detection + Tracking).
-- `src/vlm`: Visual Language Model integration.
-- `src/db`: Database connectivity and schema management.
-- `src/security`: Threat detection logic and collectors.
-- `src/agent`: LangGraph orchestrator and interactive CLI.
+## ✅ Testing & Validation
+
+The system has been validated across various high-stress scenarios:
+- **ID Persistence Test**: Maintaining object identities during high-speed drone pans.
+- **Threat Detection**: Successfully flagging loitering and unauthorized off-hours entry.
+- **Cross-DB Sync**: Ensuring 100% data integrity between Relational and Graph stores.
+
+[View Full Testing & Validation Report →](docs/testing.md)
+
+---
+
+## 📂 Project Structure
+- `src/perciever`: Detection and Tracking modules. [Docs](docs/perception.md)
+- `src/vlm`: visual language model integration. [Docs](docs/vlm.md)
+- `src/db`: Database connectivity and schema. [Docs](docs/data_layer.md)
+- `src/security`: Threat detection heuristics. [Docs](docs/security.md)
+- `src/agent`: LangGraph orchestrator. [Docs](docs/agent.md)

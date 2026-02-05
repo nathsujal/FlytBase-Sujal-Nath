@@ -456,8 +456,6 @@ class SecurityAgent:
         try:
             logger.debug(f"Executing behavioral reasoning with phi4 for {reason_for}...")
             reasoning = self.reasoning_llm.invoke_with_reasoning(prompt)
-
-            print(f"\nReasoning: {reasoning}\n")
             
             # 2. Structured Synthesis (Qwen)
             if reason_for == "loitering" or reason_for == "off_hours_activity":
@@ -483,8 +481,6 @@ class SecurityAgent:
                     schema=schema,
                     system_message="You are a security data synthesizer. Convert behavioral logs into structured JSON."
                 )
-
-                print(f"\nThreat Data: {threat_data.model_dump_json(indent=2)}\n")
                 
                 return Threat(
                     object_id=object_info["object_id"],
@@ -507,8 +503,6 @@ class SecurityAgent:
                     schema=VehicleLifecycleSchema,
                     system_message="You are a security data synthesizer. Convert behavioral logs into structured JSON."
                 )
-
-                print(f"\nVehicle Lifecycle Data: {lifecycle.model_dump_json(indent=2)}\n")
                 
                 # Map to VehicleTracking object
                 events = []
