@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ═══════════════════════════════════════════════════════════════
-# FlytBase PostgreSQL Reset Script
+# Raven PostgreSQL Reset Script
 # Drops indexes and truncates all tables for a clean run
 # Run: ./reset.sh
 # ═══════════════════════════════════════════════════════════════
@@ -9,9 +9,9 @@
 set -e  # Exit on error
 
 # Configuration
-DB_NAME="flytbase"
+DB_NAME="raven"
 
-echo "🔄 Resetting FlytBase database..."
+echo "🔄 Resetting Raven database..."
 
 # Check if database exists
 if ! psql -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname = '$DB_NAME'" | grep -q 1; then

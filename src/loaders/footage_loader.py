@@ -67,15 +67,17 @@ class DroneFootageLoader:
         self.frame_paths = []
         for ext in ['*.jpg', '*.jpeg', '*.png']:
             self.frame_paths.extend(self.source.glob(ext))
-        
-        # Sort by frame number (assumes numeric naming like 0.jpg, 1.jpg)
-        self.frame_paths = sorted(self.frame_paths, key=lambda x: int(x.stem))
+        self.frame_paths = sorted(self.frame_paths,
+                                  key=lambda x: x.stat().st_mtime
+                                )
         
         if not self.frame_paths:
             raise ValueError(f"No frames found in: {self.source}")
         
-        self.total_frames = len(self.frame_paths)
+        print(f"Found frames: {len(self.frame_paths)}") 
         
+        self.total_frames = len(self.frame_paths)
+
         # Get dimensions from first frame
         first_frame = cv2.imread(str(self.frame_paths[0]))
         if first_frame is None:

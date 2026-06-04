@@ -1,4 +1,5 @@
 from typing import Dict, Iterator, Optional, Callable, List
+from collections import Counter
 from tqdm import tqdm
 
 from .detector import ObjectDetector
@@ -179,6 +180,23 @@ class Perciever:
         # Consume the generator - process() will handle updates
         for _ in self.process():
             pass
+
+        objects_count = Counter(
+            getattr(obj, "label", "unknown")
+            for obj in self.objects.values()
+        )
+
+        report_path = "alerts.txt"
+        with open(report_path, "w") as f:
+            f.write("=" * 50 + "\n")
+            f.write("SECURITY ANALYSIS REPORT\n")
+            f.write("=" * 50 + "\n\n")
+
+            f.write(f"Total objects detected: {len(self.objects)}\n") 
+            f.write("Object breakdown:\n")
+            for label, count in objects_count.most_common():
+                f.write(f"  {label}: {count}\n")
+
         logger.info("Batch processing complete")
     
     def __iter__(self) -> Iterator[Frame]:

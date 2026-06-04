@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ═══════════════════════════════════════════════════════════════
-# FlytBase Database Initialization Script
+# Raven Database Initialization Script
 # Automatically decides: setup or reset
 # Run: ./db.sh
 # ═══════════════════════════════════════════════════════════════
@@ -12,7 +12,7 @@ set -e  # Exit on error
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Configuration
-DB_NAME="flytbase"
+DB_NAME="raven"
 
 echo "🔍 Checking database state..."
 

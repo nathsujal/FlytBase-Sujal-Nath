@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # ═══════════════════════════════════════════════════════════════
-# FlytBase PostgreSQL Setup Script
+# Raven PostgreSQL Setup Script
 # Run: ./setup.sh
 # ═══════════════════════════════════════════════════════════════
 
 set -e  # Exit on error
 
 # Configuration
-DB_NAME="flytbase"
+DB_NAME="raven"
 ADMIN_USER="admin"
 ADMIN_PASS="admin_password"
 WRITER_USER="writer"

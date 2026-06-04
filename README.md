@@ -1,4 +1,4 @@
-# FlytBase Drone Surveillance Intelligence System
+# Raven Drone Surveillance Intelligence System
 
 > **AI-Powered Security Analysis from Aerial Surveillance**  
 > A multi-modal intelligence platform that transforms raw drone footage into actionable security insights using computer vision, knowledge graphs, and agentic reasoning.
@@ -23,7 +23,7 @@
 
 ## Overview
 
-This project is an assignment submission for **FlytBase**, demonstrating an end-to-end intelligence pipeline for drone-based security surveillance. The system processes aerial video footage to:
+This project is an assignment submission for **Raven**, demonstrating an end-to-end intelligence pipeline for drone-based security surveillance. The system processes aerial video footage to:
 
 1. **Detect and track objects** (vehicles, people, bicycles) across frames
 2. **Build a knowledge graph** of spatial relationships and behaviors
@@ -191,7 +191,7 @@ ollama pull sciphi/triplex:1.5b
 
 4. **Configure databases**:
 ```bash
-# PostgreSQL (creates flytbase DB with reader/writer roles)
+# PostgreSQL (creates the DB with reader/writer roles)
 bash src/db/postgres/scripts/setup.sh
 
 # Neo4j (ensure running on localhost:7687)
@@ -203,7 +203,7 @@ bash src/db/postgres/scripts/setup.sh
 # PostgreSQL
 PG_HOST=localhost
 PG_PORT=5432
-PG_DATABASE_NAME=flytbase
+PG_DATABASE_NAME=raven
 PG_WRITER_USER=writer
 PG_WRITER_PASSWORD=writer_password
 PG_READER_USER=reader
@@ -504,16 +504,3 @@ This project was developed using **Google's AI-powered development workflow**:
 - **Model Quantization**: Int8 quantized BLIP/RT-DETR for edge deployment
 - **Incremental KG Updates**: Only process new frames, not full re-ingestion
 - **Vector Search**: FAISS/Milvus for fast object similarity queries
-
----
-
-## Acknowledgments
-
-- **FlytBase**: For the assignment prompt and evaluation framework
-- **Anthropic (Claude)**: For prompt engineering guidance and code scaffolding via Google's AI-powered development workflow
-- **Open Source Community**: For RT-DETR (Ultralytics), BLIP (Salesforce), CLIP (OpenAI), Ollama, LangChain, Neo4j, PostgreSQL
-
----
-
-**Developed with 🤖 AI-Assisted Workflow**  
-*Prompts curated via Claude (Anthropic) | Code generation via Google Antigravity | Architecture diagrams via Claude*

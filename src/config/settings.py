@@ -19,7 +19,7 @@ class Settings(BaseModel):
     pg_host: str = os.getenv("PG_HOST", "localhost")
     pg_port: int = os.getenv("PG_PORT", 5432)
 
-    pg_database_name: str = os.getenv("PG_DATABASE_NAME", "flytbase")
+    pg_database_name: str = os.getenv("PG_DATABASE_NAME", "raven")
 
     pg_writer: str = os.getenv("PG_WRITER_USER", "writer")
     pg_writer_password: str = os.getenv("PG_WRITER_PASSWORD", "writer_password")
